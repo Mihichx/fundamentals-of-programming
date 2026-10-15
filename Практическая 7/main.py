@@ -40,7 +40,8 @@ def ex2():
 def ex3():
     print("Задание 3")
 
-    value = [20, 15, 1, 2, 3, 1, 5, 6, 7, 8, 30, 10, 11, 12, 13, 14]
+    # value = [20, 15, 1, 2, 3, 1, 5, 6, 7, 8, 30, 10, 11, 12, 13, 14]
+    value = [12, 34, 100, 50, 1, 45]
     len_value = len(value)
     min_value_index = max_value_index = 0
     result = 0
@@ -51,9 +52,12 @@ def ex3():
         elif value[i] > value[max_value_index]:
             max_value_index = i
 
-    for j in range(min_value_index, max_value_index + 1):
+    start = min(min_value_index, max_value_index)
+    end = max(min_value_index, max_value_index)
+    for j in range(start, end + 1):
         result += value[j]
         value[j] = 0
+    
 
     print(value)
     print(result)
@@ -62,7 +66,9 @@ def ex3():
 def ex4():
     print("Задание 4")
 
-    value = [20, 15, 1, 2, 3, 1, 5, 6, 7, 8, 30, 10, 11, 12, 13, 14]
+    # value = [20, 15, 1, 2, 3, 1, 5, 6, 7, 8, 30, 10, 11, 12, 13, 14]
+    value = [12, 34, 100, 50, 1, 45]
+
     len_value = len(value)
     value1 = value.copy()
     min_value_index = max_value_index = 0
@@ -73,8 +79,13 @@ def ex4():
         elif value[i] > value[max_value_index]:
             max_value_index = i
 
-    for j in range(min_value_index + 1, max_value_index):
-        value[j] = value[j] * 2
+    if (min_value_index < max_value_index):
+        for j in range(min_value_index + 1, max_value_index):
+            value[j] = value[j] * 2
+    else:
+        for j in range(max_value_index + 1, min_value_index):
+            value[j] = value[j] * 2
+    
 
     print(value1)
     print(value)
