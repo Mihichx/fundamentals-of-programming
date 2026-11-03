@@ -13,37 +13,42 @@ def ex1():
     print("Задание 1")
   
     matrix = create_matrix(3, 3, 1, 10)
-    s = { "column": None, "max": -1 }
+    s = [None, -1]
 
     for row in matrix:
-        for index, value in enumerate(row):
-            if value > s["max"]:
-                s["max"] = value
-                s["column"] = index
-
-    for index_row in range(len(matrix)):
-        matrix[index_row].pop(s["column"])
+        for index_row, value in enumerate(row):
+            if value > s[1]:
+                s[1] = value
+                s[0] = index_row
 
     for row in matrix:
         print(row)
+    print("-" * 8)
+
+    for index_row in range(len(matrix)):
+        matrix[index_row].pop(s[0])
+
+    for row in matrix:
+        print(row)
+    print("-" * 8)
     print(s)
-    
 
 
 def ex2():
     print("Задание 2")
 
     matrix = create_matrix(3, 3, 1, 10)
-    s = { "row": None, "max_sum": 0 }
+    s = [None, 0]
 
-    for index_row, row in enumerate(matrix):
+    for index_column, row in enumerate(matrix):
         row_sum = sum(row)
-        if row_sum > s["max_sum"]:
-            s["max_sum"] = row_sum
-            s["row"] = index_row
+        if row_sum > s[1]:
+            s[1] = row_sum
+            s[0] = index_column
 
     for row in matrix:
         print(row)
+    print("-" * 8)
     print(s)
 
 
@@ -53,38 +58,39 @@ def ex3():
     matrix = create_matrix(3, 3, -5, 5)
     max_index = 0
     min_index = 0
-    s = [{ "value": [], "count": 0 } for _ in range(len(matrix[0]))]
+    # s = [{ "value": [], "count": 0 } for _ in range(len(matrix[0]))]
+    s = [[[], 0] for _ in range(len(matrix[0]))]
 
     for row in matrix:
         for index, value in enumerate(row):
-            s[index]["value"].append(value)
+            s[index][0].append(value)
             if value < 0:
-                s[index]["count"] += 1
+                s[index][1] += 1
 
     for index, value in enumerate(s):
-        if value["count"] > s[max_index]["count"]:
+        if value[1] > s[max_index][1]:
             max_index = index
-        elif value["count"] < s[min_index]["count"]:
+        elif value[1] < s[min_index][1]:
             min_index = index
 
     for row in matrix:
         print(row)
 
-    print('-------------------')
+    print("-" * 8)
 
     for index_row, row in enumerate(matrix):
         for index_column,value in enumerate(row):
             if index_column == max_index:
-                matrix[index_row][index_column] = s[min_index]["value"][index_row]
+                matrix[index_row][index_column] = s[min_index][0][index_row]
             elif index_column == min_index:
-                matrix[index_row][index_column] = s[max_index]["value"][index_row]
+                matrix[index_row][index_column] = s[max_index][0][index_row]
 
 
     for row in matrix:
         print(row)
     print(s)
-    print(s[max_index]["count"])
-    print(s[min_index]["count"])
+    print(s[max_index][1])
+    print(s[min_index][1])
 
 
 def ex4():
@@ -107,6 +113,7 @@ def ex4():
         print(row)
     print(min_value)
     print(min_value_index)
+
 
 def ex5():
     print("Задание 5")
