@@ -4,8 +4,7 @@ def ex1():
     s = {"яблоки": 3, "бананы": "много", "груши": 5, "апельсины": 2}
     result = 0
 
-    for i in s:
-        value = s[i]
+    for value in s.values():
         if isinstance(value, int):
             result += value**2
 
@@ -67,8 +66,8 @@ def ex5():
     s = {"x": list(range(11, 21)), "y": list(range(21, 31)), "z": list(range(31, 41))}
 
     print(s)
-    for i in s:
-        print(s[i][4])
+    for value in s.values():
+        print(value[4])
 
 
 if __name__ == "__main__":
